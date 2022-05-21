@@ -1,2 +1,2 @@
 # spring-security-restful
-Secured RESTful service
+Secured RESTful service with HTTP basic and JWT.
