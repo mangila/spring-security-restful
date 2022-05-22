@@ -1,0 +1,6 @@
+services:
+  api:
+    restart: always
+    image: mangila/spring-security-restful
+    ports:
+      - "8080:8080"
