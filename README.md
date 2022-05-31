@@ -1,6 +1,9 @@
 # spring-security-restful
 Secured RESTful service with HTTP basic and JWT.
 
+## Seeded users
+* user:password
+* admin:password
 
 #### JWT library used
 
