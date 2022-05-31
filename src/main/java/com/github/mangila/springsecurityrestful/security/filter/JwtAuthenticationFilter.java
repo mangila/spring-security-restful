@@ -6,6 +6,7 @@ import com.github.mangila.springsecurityrestful.web.ErrorHandler;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,7 +26,6 @@ import java.util.Objects;
 @AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String BEARER = "Bearer ";
 
     private final TokenProvider provider;
@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            var header = request.getHeader(AUTHORIZATION_HEADER);
+            var header = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (Objects.nonNull(header) && header.startsWith(BEARER)) {
                 final var jwt = header.replaceFirst(BEARER, "");
                 final var claims = provider.parse(jwt);
